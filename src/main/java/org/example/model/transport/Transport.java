@@ -1,6 +1,5 @@
 package org.example.model.transport;
 
-import org.example.Repairable;
 import org.example.model.city.City;
 
 public abstract class Transport implements Repairable {
