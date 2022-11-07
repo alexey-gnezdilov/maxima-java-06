@@ -2,6 +2,7 @@ package org.example.services;
 
 import org.example.model.city.City;
 import org.example.model.transport.Transport;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,18 +10,16 @@ public class Logistics {
 
     //свойство - все транспортные средства
     private Transport[] vehicles;
-
-    //метод-пустышка
-    public void sayHello(){
-        System.out.println("Hello logistic!!!");
-    }
+    private TransportFactory transportFactory;
 
     //Конструктор по умолчанию
     public Logistics(){}
 
     //Конструктор, принимающий произвольное число паарметров (транспортные средства)
-    public Logistics(Transport... transports) {
+    @Autowired
+    public Logistics(TransportFactory transportFactory, Transport... transports) {
         vehicles = transports;
+        this.transportFactory = transportFactory;
     }
 
     //Получить самое оптимальное по стоимости доставки транспортное средство
@@ -34,6 +33,9 @@ public class Logistics {
                     minCostTransport = vehicle;
                 }
             }
+        }
+        if (minCostTransport == null) {
+            minCostTransport = transportFactory.getTransport(city, weight, hours);
         }
         return minCostTransport;
     }

@@ -12,4 +12,9 @@ public class Truck extends Transport{
     public float getPrice(City city) {
         return city.getDistanceKm() * getCostOfKm();
     }
+
+    @Override
+    public String toString() {
+        return "Truck";
+    }
 }

@@ -6,12 +6,13 @@ import org.example.model.transport.Ship;
 import org.example.model.transport.Transport;
 import org.example.model.transport.Truck;
 
+
 public class TransportFactory {
 
     //Конструктор по умолчанию
     public TransportFactory(){}
 
-    public static Transport getTransport(City city, int weight, int hours) {
+    public Transport getTransport(City city, int weight, int hours) {
 
         String[] names = {"Plane", "Ship", "Truck"};
         int capacity = roundCapacity(weight);
@@ -39,10 +40,5 @@ public class TransportFactory {
     //Генерация случайной стоимости
     private static float randomCost() {
         return (float) Math.random() * 100;
-    }
-
-    //метод-пустышка
-    public void sayHelloFactory() {
-        System.out.println("Hello Factory");
     }
 }
